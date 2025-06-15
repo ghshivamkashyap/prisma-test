@@ -1,15 +1,50 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
+}
+
+model applications {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                 Int      @map("__v")
+  appliedAt         DateTime @db.Date
+  completed         Boolean
+  completedImage    String
+  completedLocation String
+  createdAt         DateTime @db.Date
+  driver            String   @db.ObjectId
+  job               String   @db.ObjectId
+  status            String
+  updatedAt         DateTime @db.Date
+}
+
+model jobs {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  v            Int      @map("__v")
+  amount       Int
+  createdAt    DateTime @db.Date
+  customer     String   @db.ObjectId
+  distance     Int
+  dropLocation String
+  isCompleted  Boolean
+  pickLocation String
+  title        String
+  updatedAt    DateTime @db.Date
+}
+
+model users {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  v          Int      @map("__v")
+  createdAt  DateTime @db.Date
+  email      String   @unique(map: "email_1")
+  image      String
+  isVerified Boolean
+  password   String
+  phone      String   @unique(map: "phone_1")
+  role       String
+  updatedAt  DateTime @db.Date
 }
