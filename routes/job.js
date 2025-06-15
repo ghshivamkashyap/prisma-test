@@ -3,6 +3,7 @@ const router = express.Router();
 const jobController = require("../controllers/jobController");
 const { protectCustomer } = require("../utils/authMiddleware");
 const { protectDriver } = require("../utils/authMiddleware");
+const { logAll } = require('../loggers');
 
 router.post("/create-job", protectCustomer, jobController.createJob);
 router.get("/get-jobs", protectCustomer, jobController.getJobs);
@@ -28,5 +29,11 @@ router.post(
   protectCustomer,
   jobController.acceptApplication
 );
+
+// Dummy route to test all loggers
+router.get('/test-loggers', (req, res) => {
+  logAll('This is a test log message!');
+  res.json({ message: 'Logged with Winston, Pino, Bunyan, Loglevel, and Npmlog' });
+});
 
 module.exports = router;
