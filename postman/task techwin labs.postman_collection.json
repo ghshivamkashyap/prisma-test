@@ -1,0 +1,419 @@
+{
+	"info": {
+		"_postman_id": "41374727-9f59-4058-aa6f-16fb96d6b78d",
+		"name": "task techwin labs",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22299218",
+		"_collection_link": "https://cloudy-comet-212343.postman.co/workspace/test~f8cd95da-4a3c-466b-a07e-72721a75cc55/collection/22299218-41374727-9f59-4058-aa6f-16fb96d6b78d?action=share&source=collection_link&creator=22299218"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "//custmer\r\n// {\r\n//     // \"email\": \"lootforecast@gmail.com\",\r\n//     \"phone\": \"1234567899\",\r\n//     \"password\": \"test123\"\r\n// }\r\n// driver \r\n{\r\n    // \"email\": \"2130103@sliet.ac.in\",\r\n    \"phone\": \"1234567890\",\r\n    \"password\": \"test123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "// driver \r\n{\r\n    \"email\": \"2130103@sliet.ac.in\",\r\n    \"phone\": \"1234567890\",\r\n    \"password\": \"test123\",\r\n    \"role\": \"driver\",\r\n    \"image\": \"https://example.com/avatar.png\"\r\n}\r\n\r\n// custmer \r\n// {\r\n//     \"email\": \"lootforecast@gmail.com\",\r\n//     \"phone\": \"1234567899\",\r\n//     \"password\": \"test123\",\r\n//     \"role\": \"customer\",\r\n//     \"image\": \"https://example.com/avatar.png\"\r\n// }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/signup",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Job",
+			"item": [
+				{
+					"name": "create job",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{custmer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Deliver mohali to chandigarh\",\r\n    \"amount\": 125,\r\n    \"pickLocation\": \"123 Main St, mooh\",\r\n    \"dropLocation\": \"456 Elm St, chd\",\r\n    \"distance\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/job/create-job",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"job",
+								"create-job"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get jobs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{custmer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/job/get-jobs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"job",
+								"get-jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update job",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{custmer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"updated job Deliver Package to mohali\",\r\n    \"amount\": 10,\r\n    \"pickLocation\": \"updated 123 Main St, City A\",\r\n    \"dropLocation\": \"updated 456 Elm St, City B\",\r\n    \"distance\": 15\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/job/update-job/683844ab2ba197868eef9e0a",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"job",
+								"update-job",
+								"683844ab2ba197868eef9e0a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete job",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{custmer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/job/delete-job/683844ab2ba197868eef9e0a",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"job",
+								"delete-job",
+								"683844ab2ba197868eef9e0a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "custmer",
+			"item": [
+				{
+					"name": "get job appplications",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{custmer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/job/68385482e5e8e876b7076609/applications",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"job",
+								"68385482e5e8e876b7076609",
+								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "accept application",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{custmer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/job/accept-application/683854fbe5e8e876b707661c",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"job",
+								"accept-application",
+								"683854fbe5e8e876b707661c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "driver",
+			"item": [
+				{
+					"name": "get available jobs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{driver_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/job/available-jobs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"job",
+								"available-jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "apply job",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{driver_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobId\": \"68385482e5e8e876b7076609\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/job/apply",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"job",
+								"apply"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mark job done",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{driver_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"location\": \"location lat long\",\r\n    \"imageUrl\": \"image.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/job/mark-done/683854fbe5e8e876b707661c",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"job",
+								"mark-done",
+								"683854fbe5e8e876b707661c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		},
+		{
+			"key": "custmer_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MzgzZTFkYmRkOWZhZGJlMzcxNWZjZSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc0ODUyMDkwOCwiZXhwIjoxNzQ5MTI1NzA4fQ.aCbHoa7QDkVmASIrgVkSr3TAFAkpo3AffRHlp21Cicg",
+			"type": "default"
+		},
+		{
+			"key": "driver_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MzgzY2UzNDgzYWRiYjViNDNiZjliNCIsInJvbGUiOiJkcml2ZXIiLCJpYXQiOjE3NDg1MjE0MjYsImV4cCI6MTc0OTEyNjIyNn0.KBDgxNPU6NyaCM6EEsljtPrxkPgkebrm4VJnaNfGYYk",
+			"type": "default"
+		}
+	]
+}
